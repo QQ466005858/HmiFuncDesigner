@@ -51,6 +51,8 @@ HmiRunTimeBin/*.exe
 HmiRunTimeBin/*.dll
 HmiRunTimeBin/ViewElements/
 
+HmiRunTimeBinDebug/
+HmiRunTimeBinRelease/
 third/
 
 delobj.bat
