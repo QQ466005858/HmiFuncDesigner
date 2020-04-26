@@ -32,6 +32,9 @@ HmiFuncDesignerBin/bin/QSCADARunTime
 HmiFuncDesignerBin/bin/RtdbView
 HmiFuncDesignerBin/bin/SysTagManager
 
+HmiFuncDesignerBinBuildDebug/
+HmiFuncDesignerBinBuildRelease/
+
 HmiRunTimeBin/log/
 HmiRunTimeBin/Project/
 HmiRunTimeBin/RunProject/

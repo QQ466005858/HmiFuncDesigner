@@ -1,0 +1,6 @@
+QTC_PLUGIN_NAME = ModbusRTU_Slave
+
+QTC_LIB_DEPENDS += 
+
+QTC_PLUGIN_DEPENDS += 
+

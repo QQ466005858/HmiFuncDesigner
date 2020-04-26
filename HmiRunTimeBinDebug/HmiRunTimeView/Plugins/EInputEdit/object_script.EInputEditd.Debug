@@ -1,0 +1,15 @@
+debug/Element.o
+debug/PubTool.o
+debug/RealTimeDB.o
+debug/InputMethodAlphabet.o
+debug/InputMethodNumber.o
+debug/ElementInputEdit.o
+debug/EInputEditPlugin.o
+debug/InputLineEdit.o
+debug/moc_Element.o
+debug/moc_RealTimeDB.o
+debug/moc_InputMethodAlphabet.o
+debug/moc_InputMethodNumber.o
+debug/moc_ElementInputEdit.o
+debug/moc_EInputEditPlugin.o
+debug/moc_InputLineEdit.o
