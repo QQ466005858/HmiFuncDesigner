@@ -88,6 +88,6 @@ exists($$MIMETYPES):DISTFILES += $$MIMETYPES
 TARGET = $$qtLibraryName($$TARGET)
 
 DISTFILES += \
-    $$PWD/Devices/ModbusRTU_Slave/ModbusRTU_Slave_dependencies.pri
+    $$PWD/Devices/ModbusRtuSlave/ModbusRtuSlave_dependencies.pri
 
 

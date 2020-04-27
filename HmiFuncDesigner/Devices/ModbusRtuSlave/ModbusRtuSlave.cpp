@@ -1,6 +1,6 @@
-#include "ModbusRTU_Slave.h"
+#include "ModbusRtuSlave.h"
 
-ModbusRTU_Slave::ModbusRTU_Slave()
+ModbusRtuSlave::ModbusRtuSlave()
 {
 }
 
@@ -9,7 +9,7 @@ ModbusRTU_Slave::ModbusRTU_Slave()
 /*
 * 获取设备类型名称
 */
-QString ModbusRTU_Slave::GetDeviceTypeName()
+QString ModbusRtuSlave::GetDeviceTypeName()
 {
     return QString(tr("串口设备"));
 }
@@ -17,17 +17,17 @@ QString ModbusRTU_Slave::GetDeviceTypeName()
 /*
 * 获取设备支持的所有协议
 */
-QStringList ModbusRTU_Slave::GetDeviceSupportProtocol()
+QStringList ModbusRtuSlave::GetDeviceSupportProtocol()
 {
     QStringList list;
-    list<<"ModbusRTU_Slave";
+    list<<"ModbusRtuSlave";
     return list;
 }
 
 /*
 * 获取设备支持的所有寄存器区
 */
-QStringList ModbusRTU_Slave::GetDeviceSupportRegisterArea()
+QStringList ModbusRtuSlave::GetDeviceSupportRegisterArea()
 {
     QStringList list;
     list << tr("DO线圈")
@@ -40,7 +40,7 @@ QStringList ModbusRTU_Slave::GetDeviceSupportRegisterArea()
 /*
 * 获取设备支持的所有数据类型
 */
-QStringList ModbusRTU_Slave::GetDeviceSupportDataType()
+QStringList ModbusRtuSlave::GetDeviceSupportDataType()
 {
     QStringList list;
     list << tr("Bit1开关量")
@@ -65,7 +65,7 @@ QStringList ModbusRTU_Slave::GetDeviceSupportDataType()
  * @param lowerLimit 寄存器区地址下限
  * @param upperLimit 寄存器区地址上限
  */
-void ModbusRTU_Slave::GetRegisterAreaLimit(const QString &areaName,
+void ModbusRtuSlave::GetRegisterAreaLimit(const QString &areaName,
                                      quint32 &lowerLimit,
                                      quint32 &upperLimit) {
     lowerLimit = 0;
@@ -91,7 +91,7 @@ void ModbusRTU_Slave::GetRegisterAreaLimit(const QString &areaName,
 /// \details 获取设备默认属性
 /// \param properties
 ///
-void ModbusRTU_Slave::getDefaultDeviceProperty(QVector<QPair<QString, QString>>& properties)
+void ModbusRtuSlave::getDefaultDeviceProperty(QVector<QPair<QString, QString>>& properties)
 {
     properties.clear();
     //properties.append(qMakePair(tr("通信失败重试次数n次"), QString("3")));
@@ -112,7 +112,7 @@ void ModbusRTU_Slave::getDefaultDeviceProperty(QVector<QPair<QString, QString>>&
 /// \details 获取设备默认属性数据类型
 /// \param properties_type
 ///
-void ModbusRTU_Slave::getDefaultDevicePropertyDataType(QVector<QPair<QString, QString>>& properties_type)
+void ModbusRtuSlave::getDefaultDevicePropertyDataType(QVector<QPair<QString, QString>>& properties_type)
 {
     properties_type.clear();
     //properties_type.append(qMakePair(tr("通信失败重试次数n次"), QString("int")));
@@ -135,7 +135,7 @@ void ModbusRTU_Slave::getDefaultDevicePropertyDataType(QVector<QPair<QString, QS
 /// \param properties 属性
 /// \return 属性字符串
 ///
-QString ModbusRTU_Slave::devicePropertiesToString(QVector<QPair<QString, QString>>& properties)
+QString ModbusRtuSlave::devicePropertiesToString(QVector<QPair<QString, QString>>& properties)
 {
     QStringList szListProperties;
     //szListProperties << QString(tr("retryTimes=%1")).arg(getValue2ByValue1(tr("通信失败重试次数n次"), properties));
@@ -158,7 +158,7 @@ QString ModbusRTU_Slave::devicePropertiesToString(QVector<QPair<QString, QString
 /// \param szProperty 属性字符串
 /// \param properties 属性
 ///
-void ModbusRTU_Slave::devicePropertiesFromString(const QString &szProperty, QVector<QPair<QString, QString>>& properties)
+void ModbusRtuSlave::devicePropertiesFromString(const QString &szProperty, QVector<QPair<QString, QString>>& properties)
 {
     properties.clear();
 
@@ -197,7 +197,7 @@ void ModbusRTU_Slave::devicePropertiesFromString(const QString &szProperty, QVec
 /// \details 设置设备属性
 /// \param properties
 ///
-void ModbusRTU_Slave::setDeviceProperty(QVector<QPair<QString, QString>>& properties)
+void ModbusRtuSlave::setDeviceProperty(QVector<QPair<QString, QString>>& properties)
 {
     m_properties.clear();
     m_properties.append(properties);

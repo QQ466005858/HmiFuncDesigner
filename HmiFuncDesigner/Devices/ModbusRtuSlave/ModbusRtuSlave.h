@@ -4,14 +4,14 @@
 #include <QObject>
 #include "../IDevicePlugin/IDevicePlugin.h"
 
-class ModbusRTU_Slave : public QObject, IDevicePlugin
+class ModbusRtuSlave : public QObject, IDevicePlugin
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID DevicePluginInterface_iid FILE "ModbusRTU_Slave.json")
+    Q_PLUGIN_METADATA(IID DevicePluginInterface_iid FILE "ModbusRtuSlave.json")
     Q_INTERFACES(IDevicePlugin)
 
 public:
-    ModbusRTU_Slave();
+    ModbusRtuSlave();
 
     // 获取设备类型名称
     QString GetDeviceTypeName() Q_DECL_OVERRIDE;

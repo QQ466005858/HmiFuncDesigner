@@ -3,7 +3,7 @@ TEMPLATE = subdirs
 SUBDIRS += \
     ModbusRTU \
     ModbusASCII \
-    ModbusRTU_Slave \
+    ModbusRtuSlave \
     TCPIPModbus \
     FX2N \
     S7_200
