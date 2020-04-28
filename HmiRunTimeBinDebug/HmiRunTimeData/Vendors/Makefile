@@ -30,6 +30,7 @@ MOVE          = move
 SUBTARGETS    =  \
 		sub-ModbusRTU \
 		sub-ModbusASCII \
+		sub-ModbusRtuSlave \
 		sub-TCPIPModbus \
 		sub-FX2N \
 		sub-S7_200
@@ -85,6 +86,31 @@ sub-ModbusASCII-install_subtargets: FORCE
 sub-ModbusASCII-uninstall_subtargets: FORCE
 	@if not exist ModbusASCII\ mkdir ModbusASCII\ & if not exist ModbusASCII\ exit 1
 	cd ModbusASCII\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusASCII\ModbusASCII.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
+sub-ModbusRtuSlave-qmake_all:  FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
+	cd ModbusRtuSlave\ && $(MAKE) -f Makefile qmake_all
+sub-ModbusRtuSlave: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile
+sub-ModbusRtuSlave-make_first: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile 
+sub-ModbusRtuSlave-all: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile all
+sub-ModbusRtuSlave-clean: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile clean
+sub-ModbusRtuSlave-distclean: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile distclean
+sub-ModbusRtuSlave-install_subtargets: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile install
+sub-ModbusRtuSlave-uninstall_subtargets: FORCE
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile uninstall
 sub-TCPIPModbus-qmake_all:  FORCE
 	@if not exist TCPIPModbus\ mkdir TCPIPModbus\ & if not exist TCPIPModbus\ exit 1
 	cd TCPIPModbus\ && $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\TCPIPModbus\TCPIPModbus.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -523,15 +549,15 @@ G:/Qt/Qt5.12.8/5.12.8/mingw73_32/mkspecs/features/lex.prf:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\..\HmiRunTime\HmiRunTimeData\Vendors\Vendors.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 
-qmake_all: sub-ModbusRTU-qmake_all sub-ModbusASCII-qmake_all sub-TCPIPModbus-qmake_all sub-FX2N-qmake_all sub-S7_200-qmake_all FORCE
+qmake_all: sub-ModbusRTU-qmake_all sub-ModbusASCII-qmake_all sub-ModbusRtuSlave-qmake_all sub-TCPIPModbus-qmake_all sub-FX2N-qmake_all sub-S7_200-qmake_all FORCE
 
-make_first: sub-ModbusRTU-make_first sub-ModbusASCII-make_first sub-TCPIPModbus-make_first sub-FX2N-make_first sub-S7_200-make_first  FORCE
-all: sub-ModbusRTU-all sub-ModbusASCII-all sub-TCPIPModbus-all sub-FX2N-all sub-S7_200-all  FORCE
-clean: sub-ModbusRTU-clean sub-ModbusASCII-clean sub-TCPIPModbus-clean sub-FX2N-clean sub-S7_200-clean  FORCE
-distclean: sub-ModbusRTU-distclean sub-ModbusASCII-distclean sub-TCPIPModbus-distclean sub-FX2N-distclean sub-S7_200-distclean  FORCE
+make_first: sub-ModbusRTU-make_first sub-ModbusASCII-make_first sub-ModbusRtuSlave-make_first sub-TCPIPModbus-make_first sub-FX2N-make_first sub-S7_200-make_first  FORCE
+all: sub-ModbusRTU-all sub-ModbusASCII-all sub-ModbusRtuSlave-all sub-TCPIPModbus-all sub-FX2N-all sub-S7_200-all  FORCE
+clean: sub-ModbusRTU-clean sub-ModbusASCII-clean sub-ModbusRtuSlave-clean sub-TCPIPModbus-clean sub-FX2N-clean sub-S7_200-clean  FORCE
+distclean: sub-ModbusRTU-distclean sub-ModbusASCII-distclean sub-ModbusRtuSlave-distclean sub-TCPIPModbus-distclean sub-FX2N-distclean sub-S7_200-distclean  FORCE
 	-$(DEL_FILE) Makefile
-install_subtargets: sub-ModbusRTU-install_subtargets sub-ModbusASCII-install_subtargets sub-TCPIPModbus-install_subtargets sub-FX2N-install_subtargets sub-S7_200-install_subtargets FORCE
-uninstall_subtargets: sub-ModbusRTU-uninstall_subtargets sub-ModbusASCII-uninstall_subtargets sub-TCPIPModbus-uninstall_subtargets sub-FX2N-uninstall_subtargets sub-S7_200-uninstall_subtargets FORCE
+install_subtargets: sub-ModbusRTU-install_subtargets sub-ModbusASCII-install_subtargets sub-ModbusRtuSlave-install_subtargets sub-TCPIPModbus-install_subtargets sub-FX2N-install_subtargets sub-S7_200-install_subtargets FORCE
+uninstall_subtargets: sub-ModbusRTU-uninstall_subtargets sub-ModbusASCII-uninstall_subtargets sub-ModbusRtuSlave-uninstall_subtargets sub-TCPIPModbus-uninstall_subtargets sub-FX2N-uninstall_subtargets sub-S7_200-uninstall_subtargets FORCE
 
 sub-ModbusRTU-debug:
 	@if not exist ModbusRTU\ mkdir ModbusRTU\ & if not exist ModbusRTU\ exit 1
@@ -539,6 +565,9 @@ sub-ModbusRTU-debug:
 sub-ModbusASCII-debug:
 	@if not exist ModbusASCII\ mkdir ModbusASCII\ & if not exist ModbusASCII\ exit 1
 	cd ModbusASCII\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusASCII\ModbusASCII.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
+sub-ModbusRtuSlave-debug:
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
 sub-TCPIPModbus-debug:
 	@if not exist TCPIPModbus\ mkdir TCPIPModbus\ & if not exist TCPIPModbus\ exit 1
 	cd TCPIPModbus\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\TCPIPModbus\TCPIPModbus.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
@@ -548,7 +577,7 @@ sub-FX2N-debug:
 sub-S7_200-debug:
 	@if not exist S7_200\ mkdir S7_200\ & if not exist S7_200\ exit 1
 	cd S7_200\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\S7_200\S7_200.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile debug
-debug: sub-ModbusRTU-debug sub-ModbusASCII-debug sub-TCPIPModbus-debug sub-FX2N-debug sub-S7_200-debug
+debug: sub-ModbusRTU-debug sub-ModbusASCII-debug sub-ModbusRtuSlave-debug sub-TCPIPModbus-debug sub-FX2N-debug sub-S7_200-debug
 
 sub-ModbusRTU-release:
 	@if not exist ModbusRTU\ mkdir ModbusRTU\ & if not exist ModbusRTU\ exit 1
@@ -556,6 +585,9 @@ sub-ModbusRTU-release:
 sub-ModbusASCII-release:
 	@if not exist ModbusASCII\ mkdir ModbusASCII\ & if not exist ModbusASCII\ exit 1
 	cd ModbusASCII\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusASCII\ModbusASCII.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
+sub-ModbusRtuSlave-release:
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
 sub-TCPIPModbus-release:
 	@if not exist TCPIPModbus\ mkdir TCPIPModbus\ & if not exist TCPIPModbus\ exit 1
 	cd TCPIPModbus\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\TCPIPModbus\TCPIPModbus.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
@@ -565,7 +597,7 @@ sub-FX2N-release:
 sub-S7_200-release:
 	@if not exist S7_200\ mkdir S7_200\ & if not exist S7_200\ exit 1
 	cd S7_200\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\S7_200\S7_200.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile release
-release: sub-ModbusRTU-release sub-ModbusASCII-release sub-TCPIPModbus-release sub-FX2N-release sub-S7_200-release
+release: sub-ModbusRTU-release sub-ModbusASCII-release sub-ModbusRtuSlave-release sub-TCPIPModbus-release sub-FX2N-release sub-S7_200-release
 
 sub-ModbusRTU-check:
 	@if not exist ModbusRTU\ mkdir ModbusRTU\ & if not exist ModbusRTU\ exit 1
@@ -573,6 +605,9 @@ sub-ModbusRTU-check:
 sub-ModbusASCII-check:
 	@if not exist ModbusASCII\ mkdir ModbusASCII\ & if not exist ModbusASCII\ exit 1
 	cd ModbusASCII\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusASCII\ModbusASCII.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
+sub-ModbusRtuSlave-check:
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
 sub-TCPIPModbus-check:
 	@if not exist TCPIPModbus\ mkdir TCPIPModbus\ & if not exist TCPIPModbus\ exit 1
 	cd TCPIPModbus\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\TCPIPModbus\TCPIPModbus.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
@@ -582,7 +617,7 @@ sub-FX2N-check:
 sub-S7_200-check:
 	@if not exist S7_200\ mkdir S7_200\ & if not exist S7_200\ exit 1
 	cd S7_200\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\S7_200\S7_200.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile check
-check: sub-ModbusRTU-check sub-ModbusASCII-check sub-TCPIPModbus-check sub-FX2N-check sub-S7_200-check
+check: sub-ModbusRTU-check sub-ModbusASCII-check sub-ModbusRtuSlave-check sub-TCPIPModbus-check sub-FX2N-check sub-S7_200-check
 
 sub-ModbusRTU-benchmark:
 	@if not exist ModbusRTU\ mkdir ModbusRTU\ & if not exist ModbusRTU\ exit 1
@@ -590,6 +625,9 @@ sub-ModbusRTU-benchmark:
 sub-ModbusASCII-benchmark:
 	@if not exist ModbusASCII\ mkdir ModbusASCII\ & if not exist ModbusASCII\ exit 1
 	cd ModbusASCII\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusASCII\ModbusASCII.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
+sub-ModbusRtuSlave-benchmark:
+	@if not exist ModbusRtuSlave\ mkdir ModbusRtuSlave\ & if not exist ModbusRtuSlave\ exit 1
+	cd ModbusRtuSlave\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\ModbusRtuSlave\ModbusRtuSlave.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
 sub-TCPIPModbus-benchmark:
 	@if not exist TCPIPModbus\ mkdir TCPIPModbus\ & if not exist TCPIPModbus\ exit 1
 	cd TCPIPModbus\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\TCPIPModbus\TCPIPModbus.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
@@ -599,7 +637,7 @@ sub-FX2N-benchmark:
 sub-S7_200-benchmark:
 	@if not exist S7_200\ mkdir S7_200\ & if not exist S7_200\ exit 1
 	cd S7_200\ && ( if not exist Makefile $(QMAKE) -o Makefile I:\0010QTGUI\001QT_HMI\HmiFuncDesigner\HmiRunTime\HmiRunTimeData\Vendors\S7_200\S7_200.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug" ) && $(MAKE) -f Makefile benchmark
-benchmark: sub-ModbusRTU-benchmark sub-ModbusASCII-benchmark sub-TCPIPModbus-benchmark sub-FX2N-benchmark sub-S7_200-benchmark
+benchmark: sub-ModbusRTU-benchmark sub-ModbusASCII-benchmark sub-ModbusRtuSlave-benchmark sub-TCPIPModbus-benchmark sub-FX2N-benchmark sub-S7_200-benchmark
 install:install_subtargets  FORCE
 
 uninstall: uninstall_subtargets FORCE
