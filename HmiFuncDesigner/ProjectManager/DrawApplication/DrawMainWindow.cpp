@@ -77,22 +77,26 @@ void DrawMainWindow::initView()
     elementWidget_ = new ElementLibraryWidget();
     this->ElemetsLayout->addWidget(elementWidget_);
 
-    VariantManager *pVariantManager  = new VariantManager(this);
-    variantPropertyManager_ = pVariantManager;
-
-    connect(variantPropertyManager_, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
-            this, SLOT(propertyValueChanged(QtProperty *, const QVariant &)));
-
     variantEditorFactory_ = new VariantFactory(this);
 
-    propertyEditor_ = new QtTreePropertyBrowser(dockProperty);
+    //propertyEditor_ = new QtTreePropertyBrowser(dockProperty);
+    propertyEditor_ = new QtTreePropertyBrowser(this);
     propertyEditor_->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     propertyEditor_->setHeaderLabels(QStringList() << tr("属性") << tr("值"));
     //propertyEditor_->setColumnWidth(0, 60);
     //propertyEditor_->setColumnWidth(1, 200);
-    propertyEditor_->setFactoryForManager(variantPropertyManager_, variantEditorFactory_);
-    pVariantManager->setPropertyEditor(propertyEditor_);
+
+
     this->PropertyLayout->addWidget(propertyEditor_);
+
+    VariantManager *pVariantManager  = new VariantManager(this);
+    variantPropertyManager_ = pVariantManager;
+    pVariantManager->setPropertyEditor(propertyEditor_);
+    propertyEditor_->setFactoryForManager(variantPropertyManager_, variantEditorFactory_);
+
+    connect(variantPropertyManager_, SIGNAL(valueChanged(QtProperty *, const QVariant &)),
+            this, SLOT(propertyValueChanged(QtProperty *, const QVariant &)));
+
 
     objTree_ = new ObjectsTreeView();
     this->ObjectTreeLayout->addWidget(objTree_);
@@ -327,7 +331,7 @@ void DrawMainWindow::openGraphPage(const QString &szProjPath,
 
             if(szPageId == szPageName) {
                 currentGraphPage_ = graphPage;
-                currentView_ = view;
+                currentView_ = dynamic_cast<QGraphicsView *>(view);
             }
 
             graphPage->setProjectPath(szProjPath);
@@ -425,7 +429,7 @@ void DrawMainWindow::addNewGraphPage()
     currentGraphPage_ = graphPage;
     view->setScene(graphPage);
     view->setFixedSize(graphPage->getGraphPageWidth(), graphPage->getGraphPageHeight());
-    currentView_ = view;
+    currentView_ = dynamic_cast<QGraphicsView *>(view);
     QString title = fixedWindowTitle(view);
     graphPage->setFileName(title + ".drw");
     graphPage->setGraphPageId(title);
@@ -469,7 +473,7 @@ void DrawMainWindow::disconnectGraphPage(GraphPage *graphPage)
 
 QGraphicsView *DrawMainWindow::createTabView()
 {
-    QGraphicsView *view = new QGraphicsView;
+    QGraphicsView *view = new QGraphicsView();
     view->setDragMode(QGraphicsView::RubberBandDrag);
     view->setCacheMode(QGraphicsView::CacheBackground);
     view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
@@ -485,8 +489,6 @@ void DrawMainWindow::slotUpdateActions()
 
     for (int i = 0; i < graphPageTabWidget_->count(); i++) {
         QGraphicsView *view = dynamic_cast<QGraphicsView*>(graphPageTabWidget_->widget(i));
-        GraphPage *scene = dynamic_cast<GraphPage *>(view->scene());
-        view->setFixedSize(scene->getGraphPageWidth(), scene->getGraphPageHeight());
         if (!dynamic_cast<GraphPage *>(view->scene())->undoStack()->isClean() ||
             dynamic_cast<GraphPage *>(view->scene())->getUnsavedFlag()) {
             graphPageTabWidget_->setTabIcon(graphPageTabWidget_->indexOf(view), unsaved);
@@ -696,7 +698,7 @@ void DrawMainWindow::slotEditOpen()
         } 
 
         currentGraphPage_ = graphPage;
-        currentView_ = view;
+        currentView_ = dynamic_cast<QGraphicsView *>(view);
         graphPage->setProjectPath(szProjPath_);
         graphPage->setProjectName(szProjName_);
         graphPage->loadAsXML(filename);
@@ -1119,7 +1121,7 @@ reInput:
             }
 
             currentGraphPage_ = graphPage;
-            currentView_ = view;
+            currentView_ = dynamic_cast<QGraphicsView *>(view);
             graphPage->setProjectPath(szProjPath_);
             graphPage->setProjectName(szProjName_);
             graphPage->loadAsXML(fileName);
@@ -1274,7 +1276,7 @@ reGetNum:
         }
 
         currentGraphPage_ = graphPage;
-        currentView_ = view;
+        currentView_ = dynamic_cast<QGraphicsView *>(view);
         graphPage->setProjectPath(szProjPath_);
         graphPage->setProjectName(szProjName_);
         graphPage->loadAsXML(szPasteFileName);
